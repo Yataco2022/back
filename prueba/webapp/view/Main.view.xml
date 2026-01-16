@@ -1,0 +1,110 @@
+<mvc:View controllerName="com.uppersap.prueba.prueba.controller.Main"
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core"
+    height="100%">
+    <Page
+        title="Creación de aplicativo"
+        class="sapUiContentPadding">
+        <customHeader>
+            <Toolbar>
+                <Button type="Back" press=".onPress" />
+                <ToolbarSpacer/>
+                <Title text="Título" level="H2"/>
+                <ToolbarSpacer/>
+                <Button icon="sap-icon://edit" type="Transparent" press=".onPress" ariaLabelledBy="editButtonLabel"/>
+            </Toolbar>
+        </customHeader>
+        
+        <subHeader>
+            <Toolbar>
+                <ToolbarSpacer/>
+                <Button text="Default" press=".onPress" />
+                <Button type="Reject" text="Reject" press=".onPress" />
+                <Button icon="sap-icon://action" type="Transparent" press=".onPress" ariaLabelledBy="actionButtonLabel"/>
+                <ToolbarSpacer/>
+            </Toolbar>
+        </subHeader>
+
+        <content>
+            <VBox alignItems="Center" class="sapUiMediumMargin">
+                <Title text="Contador de Clics" class="sapUiSmallMarginBottom"/>
+                <Text id="textoContador" text="Clics: 0" class="sapUiLargeMarginBottom"/>
+
+                <HBox justifyContent="Center" width="100%">
+                    <Button text="Default"
+                            press=".contarClic"
+                            ariaDescribedBy="defaultButtonDescription genericButtonDescription">
+                        <layoutData>
+                            <FlexItemData growFactor="1" />
+                        </layoutData>
+                    </Button>
+                    <Button type="Accept"
+                            text="Accept"
+                            press=".contarClic"
+                            ariaDescribedBy="acceptButtonDescription genericButtonDescription">
+                        <layoutData>
+                            <FlexItemData growFactor="1" />
+                        </layoutData>
+                    </Button>
+                    <Button type="Reject"
+                            text="Reject"
+                            press=".contarClic"
+                            ariaDescribedBy="rejectButtonDescription genericButtonDescription">
+                        <layoutData>
+                            <FlexItemData growFactor="1" />
+                        </layoutData>
+                    </Button>
+                </HBox>
+            </VBox>
+
+            <Label id="genericButtonDescription" text="Nota: Los botones muestran un MessageToast y actualizan el contador."/>
+            <core:InvisibleText id="defaultButtonDescription" text="Descripción del botón default."/>
+            <core:InvisibleText id="acceptButtonDescription" text="Descripción del botón accept."/>
+            <core:InvisibleText id="rejectButtonDescription" text="Descripción del botón reject."/>
+            <core:InvisibleText id="comingSoonButtonDescription" text="Esta función no está activa."/>
+            <core:InvisibleText id="editButtonLabel" text="Editar"/>
+            <core:InvisibleText id="actionButtonLabel" text="Acción"/>
+        </content>
+
+        <footer>
+            <Toolbar>
+                <ToolbarSpacer/>
+                <Button type="Emphasized" text="Emphasized" press=".onPress" />
+                <Button text="Default" press=".onPress" />
+                <Button icon="sap-icon://action" type="Transparent" press=".onPress" />
+            </Toolbar>
+        </footer>
+        <VBox class="sapUiMediumMarginTop">
+    <Title text="Personajes del Multiverso" titleStyle="H2" class="sapUiSmallMarginBottom" textAlign="Center" width="100%"/>
+    
+    <List id="listaPersonajes" 
+          items="{contadorModel>/characters}" 
+          headerText="Habitantes encontrados" 
+          width="auto"
+          class="sapUiResponsiveMargin">
+        <items>
+            <CustomListItem>
+                <HBox alignItems="Center" class="sapUiSmallMargin">
+                    <Image src="{contadorModel>image}" 
+                           width="100px" 
+                           height="100px" 
+                           class="sapUiSmallMarginEnd"
+                           decorative="false" />
+                    
+                    <VBox>
+                        <Title text="{contadorModel>name}" titleStyle="H3" />
+                        <Text text="Especie: {contadorModel>race}" />
+                        <ObjectStatus 
+                            text="{contadorModel>status}" 
+                            state="{= ${contadorModel>status} === 'Alive' ? 'Success' : 'Error' }" />
+                    </VBox>
+                </HBox>
+            </CustomListItem>
+        </items>
+    </List>
+</VBox>
+
+        
+    </Page>
+</mvc:View>
